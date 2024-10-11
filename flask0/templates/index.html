@@ -9,13 +9,29 @@
         body{
             height: 100vh;
             background:linear-gradient(135deg,#202020,#00661a);
+            color: white;
+            font-weight: bold;
+        }
+        table,thead,tr,td{
+            border: 1px solid white;
+        }
+
+        input{
+            background-color: rgba(0, 0, 0, 0.6);
+            border: none;
+            outline: none;
+            padding: 5px;
+            color: white;
+            border-radius: 15px;
+        }
+        input::placeholder{
+            color: white;
         }
     </style>
 </head>
 <body>
     <h1>CRUD Provas</h1>
 
-    <!-- Formulário para criar prova -->
     <form action="/criar" method="post">
         <input type="text" name="materia" placeholder="Digite a matéria" required>
         <input type="date" name="data" required>
@@ -23,17 +39,23 @@
         <input type="submit" value="Agendar">
     </form>
 
-    <!-- Exibir lista de provas -->
     <h2>Provas:</h2>
-    <ul>
-        {% for prova in provas %}
-            <li>Matéria: {{prova.materia}}, Data: {{prova.data}}, Assunto: {{prova.assunto}}</li>
-        {% endfor %}
-    </ul>
-
+    <table>
+        <thead>
+            <tr>
+                <td>Matéria:</td><td>Data:</td><td>Assunto:</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prova in provas %}
+            <tr>
+                <td>{{prova.materia}}</td><td>{{prova.data}}</td><td>{{prova.assunto}}</td>
+            </tr>
+                {% endfor %}
+        </tbody>
+    </table>
     <hr>
 
-    <!-- Formulário para atualizar prova -->
     <h2>Atualizar Prova:</h2>
     <form action="/alterar" method="post">
         <input type="text" name="old_materia" placeholder="Matéria Atual" required>
@@ -45,7 +67,6 @@
 
     <hr>
 
-    <!-- Formulário para apagar prova -->
     <h2>Apagar Prova:</h2>
     <form action="/apagar" method="post">
         <input type="text" name="materia" placeholder="Matéria" required>
