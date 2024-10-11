@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Provas</title>
+
+    <style>
+        body{
+            height: 100vh;
+            background:linear-gradient(135deg,#202020,#00661a);
+        }
+    </style>
+</head>
+<body>
+    <h1>CRUD Provas</h1>
+
+    <!-- Formulário para criar prova -->
+    <form action="/criar" method="post">
+        <input type="text" name="materia" placeholder="Digite a matéria" required>
+        <input type="date" name="data" required>
+        <input type="text" name="assunto" placeholder="Digite o assunto" required>
+        <input type="submit" value="Agendar">
+    </form>
+
+    <!-- Exibir lista de provas -->
+    <h2>Provas:</h2>
+    <ul>
+        {% for prova in provas %}
+            <li>Matéria: {{prova.materia}}, Data: {{prova.data}}, Assunto: {{prova.assunto}}</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <!-- Formulário para atualizar prova -->
+    <h2>Atualizar Prova:</h2>
+    <form action="/alterar" method="post">
+        <input type="text" name="old_materia" placeholder="Matéria Atual" required>
+        <input type="text" name="new_materia" placeholder="Nova Matéria" required>
+        <input type="date" name="new_data">
+        <input type="text" name="new_assunto" placeholder="Novo Assunto">
+        <input type="submit" value="Alterar">
+    </form>
+
+    <hr>
+
+    <!-- Formulário para apagar prova -->
+    <h2>Apagar Prova:</h2>
+    <form action="/apagar" method="post">
+        <input type="text" name="materia" placeholder="Matéria" required>
+        <input type="submit" value="Apagar">
+    </form>
+</body>
+</html>
